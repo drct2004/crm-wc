@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String
+  password  String
+  role      String   @default("operator")
+  createdAt DateTime @default(now())
+
+  checks    Check[]  @relation("OperatorChecks")
+}
+
+model StudioModel {
+  id        Int      @id @default(autoincrement())
+  name      String
+  nickname  String?
+  status    String   @default("active")
+  createdAt DateTime @default(now())
+
+  checks    Check[]
+}
+
+model Platform {
+  id        Int      @id @default(autoincrement())
+  name      String
+  key       String   @unique
+  isActive  Boolean  @default(true)
+
+  incomes   CheckIncome[]
+}
+
+model PayoutSettings {
+  id              Int      @id @default(1)
+  modelPercent    Float    @default(30)
+  operatorPercent Float    @default(20)
+  studioPercent   Float    @default(50)
+  updatedAt        DateTime @updatedAt
+}
+
+model Check {
+  id             Int      @id @default(autoincrement())
+
+  modelId        Int
+  model          StudioModel @relation(fields: [modelId], references: [id])
+
+  operatorId     Int?
+  operator       User?    @relation("OperatorChecks", fields: [operatorId], references: [id])
+
+  date           DateTime
+  shift          Int
+  status         String   @default("pending")
+
+  total          Float    @default(0)
+  modelAmount    Float    @default(0)
+  operatorAmount Float    @default(0)
+  studioAmount   Float    @default(0)
+
+  incomes        CheckIncome[]
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model CheckIncome {
+  id         Int      @id @default(autoincrement())
+
+  checkId    Int
+  check      Check    @relation(fields: [checkId], references: [id], onDelete: Cascade)
+
+  platformId Int
+  platform   Platform @relation(fields: [platformId], references: [id])
+
+  amount     Float    @default(0)
+
+  @@unique([checkId, platformId])
+}

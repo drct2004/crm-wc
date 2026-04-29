@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оператор | CRM</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <main class="app">
+    <!-- LOGIN -->
+    <section class="login" id="operatorLoginScreen">
+      <div class="login-card">
+        <h1>Operator CRM</h1>
+        <p>Отправка чеков по сменам</p>
+
+        <form id="operatorLoginForm">
+          <input type="email" id="operatorEmail" placeholder="Email" required />
+          <input type="password" id="operatorPassword" placeholder="Пароль" required />
+          <button type="submit">Войти</button>
+        </form>
+
+        <span id="operatorLoginError"></span>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="operator-page hidden" id="operatorDashboard">
+      <div class="operator-shell">
+        <header class="operator-topbar">
+          <div>
+            <h1>Панель оператора</h1>
+            <p>Заполнение чеков для отправки администратору</p>
+          </div>
+          <button id="operatorLogoutBtn">Выйти</button>
+        </header>
+
+        <section class="operator-card">
+          <h2>Новый чек</h2>
+
+          <form class="check-form" id="operatorCheckForm">
+            <!-- МОДЕЛЬ -->
+            <div class="field">
+              <label>Фамилия оператора + модели</label>
+              <input
+                type="text"
+                id="modelName"
+                placeholder="Например: Jelena"
+                required
+              />
+            </div>
+
+            <!-- ДАТА -->
+            <div class="field">
+              <label>Дата</label>
+              <input type="date" id="checkDate" required />
+            </div>
+
+            <!-- СМЕНА -->
+            <div class="field">
+              <label>Смена</label>
+              <select id="checkShift" required>
+                <option value="">Выберите смену</option>
+                <option value="1">1 смена</option>
+                <option value="2">2 смена</option>
+              </select>
+            </div>
+
+            <!-- 🔥 ДИНАМИЧЕСКИЕ ПЛАТФОРМЫ -->
+            <div class="platforms-grid full" id="platformFields"></div>
+
+            <!-- КНОПКА -->
+            <button class="full" type="submit">
+              Отправить чек 
+            </button>
+          </form>
+
+          <p class="form-message" id="operatorCheckMessage"></p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/operator.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRM вебкам студии</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="login" id="loginScreen">
+      <div class="login-card">
+        <h1>CRM Studio</h1>
+        <p>Вход в систему управления студией</p>
+
+        <form id="loginForm">
+          <input type="email" id="email" placeholder="Email" required />
+          <input type="password" id="password" placeholder="Пароль" required />
+          <button type="submit">Войти</button>
+        </form>
+
+        <span id="loginError"></span>
+      </div>
+    </section>
+
+    <section class="dashboard hidden" id="dashboard">
+      <aside class="sidebar">
+        <h2>CRM</h2>
+        <button class="nav-btn active" id="shiftsNav">Смены</button>
+        <button class="nav-btn" id="chartsNav">Диаграммы</button>
+      </aside>
+
+      <section class="content">
+        <header class="topbar">
+          <div>
+            <h1>Панель администратора</h1>
+            <p>Контроль смен, чеков, операторов и тоталов</p>
+          </div>
+          <button id="logoutBtn">Выйти</button>
+        </header>
+
+        <div id="shiftsPage">
+          <section class="stats">
+            <div class="stat-card">
+              <span>1 смена</span>
+              <strong id="shiftOneTotal">$0</strong>
+            </div>
+            <div class="stat-card">
+              <span>2 смена</span>
+              <strong id="shiftTwoTotal">$0</strong>
+            </div>
+            <div class="stat-card">
+              <span>Ожидают проверки</span>
+              <strong id="pendingCount">0</strong>
+            </div>
+            <div class="stat-card">
+              <span>Тотал</span>
+              <strong id="dayTotal">$0</strong>
+            </div>
+          </section>
+
+          <section class="panel percent-panel">
+            <div class="panel-header">
+              <h2>Калькулятор процентов</h2>
+              <p class="muted">30% модель / 20% оператор / 50% студия</p>
+            </div>
+
+            <div class="percent-calculator">
+              <input type="number" id="calcTotal" placeholder="Сумма $" min="0" />
+
+              <div class="calc-result">
+                <span>Модель получит</span>
+                <strong id="modelAmount">$0</strong>
+              </div>
+
+              <div class="calc-result">
+                <span>Оператор получит</span>
+                <strong id="operatorAmount">$0</strong>
+              </div>
+
+              <div class="calc-result">
+                <span>Студия получит</span>
+                <strong id="studioAmount">$0</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Чеки по сменам</h2>
+                <p class="muted">Фильтрация по смене, модели и периоду</p>
+              </div>
+
+              
+
+              <div class="filters">
+                <select id="shiftFilter">
+                  <option value="all">Все смены</option>
+                  <option value="1">1 смена</option>
+                  <option value="2">2 смена</option>
+                </select>
+
+                <select id="modelFilter">
+                  <option value="all">Все модели</option>
+                </select>
+
+                <input type="date" id="dateFrom" />
+                <input type="date" id="dateTo" />
+
+                <button class="export-btn" id="exportCsvBtn" type="button">
+                Скачать отчёт excel
+              </button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Модель</th>
+                    <th>Дата</th>
+                    <th>Смена</th>
+                    <th>Stripchat</th>
+                    <th>Chaturbate</th>
+                    <th>Cam4</th>
+                    <th>BongaCams</th>
+                    <th>Camsoda</th>
+                    <th>Ton.place</th>
+                    <th>LiveJasmin</th>
+                    <th>Total</th>
+                    <th>Статус</th>
+                    <th>Действие</th>
+                  </tr>
+                </thead>
+                <tbody id="checksTable"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel users-panel">
+            <div class="panel-header">
+              <div>
+                <h2>Операторы</h2>
+                <p class="muted">Создание и удаление операторских аккаунтов</p>
+              </div>
+
+              <button class="toggle-btn" id="operatorsToggle" type="button">
+                Свернуть
+              </button>
+            </div>
+
+            <div class="collapsible-content" id="operatorsContent">
+              <form class="user-form" id="operatorCreateForm">
+                <input type="email" id="newOperatorEmail" placeholder="Email оператора" required />
+                <input type="text" id="newOperatorUsername" placeholder="Имя оператора" required />
+                <input type="password" id="newOperatorPassword" placeholder="Пароль" required />
+                <button type="submit">Создать оператора</button>
+              </form>
+
+              <p class="form-message" id="operatorAdminMessage"></p>
+
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Email</th>
+                      <th>Имя</th>
+                      <th>Роль</th>
+                      <th>Создан</th>
+                      <th>Действие</th>
+                    </tr>
+                  </thead>
+                  <tbody id="operatorsTable"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="hidden" id="chartsPage">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Диаграммы</h2>
+                <p class="muted">Статистика всех заработков за последние 7 дней</p>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-bars" id="weeklyChart"></div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal-overlay hidden" id="deleteCheckModal">
+  <div class="drop-modal">
+    <h3>Удалить чек?</h3>
+    <p>Это действие нельзя отменить. Чек исчезнет из базы данных.</p>
+
+    <div class="modal-actions">
+      <button class="ghost-btn" id="cancelDeleteCheck" type="button">Отмена</button>
+      <button class="danger-btn" id="confirmDeleteCheck" type="button">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="deleteOperatorModal">
+  <div class="drop-modal">
+    <h3>Удалить оператора?</h3>
+    <p>Оператор потеряет доступ к системе. Уже отправленные чеки останутся в базе.</p>
+
+    <div class="modal-actions">
+      <button class="ghost-btn" id="cancelDeleteOperator" type="button">Отмена</button>
+      <button class="danger-btn" id="confirmDeleteOperator" type="button">Удалить</button>
+    </div>
+  </div>
+</div>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
