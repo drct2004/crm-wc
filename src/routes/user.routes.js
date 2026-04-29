@@ -24,7 +24,7 @@ router.post("/", authMiddleware, adminMiddleware, async (req, res) => {
         email,
         username,
         password: hashedPassword,
-        role: role || "user",
+        role: role || "operator",
       },
     });
 
