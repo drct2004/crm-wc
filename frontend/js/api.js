@@ -15,7 +15,7 @@ async function loginRequest(email, password) {
 async function getChecks() {
   const token = localStorage.getItem("token");
 
-  const response = await fetch("http://localhost:5000/checks", {
+  const response = await fetch(`${API_URL}/checks`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
