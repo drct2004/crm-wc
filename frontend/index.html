@@ -11,12 +11,12 @@
     <section class="login" id="loginScreen">
       <div class="login-card">
         <h1>CRM Studio</h1>
-        <p>Вход в систему управления студией</p>
+        <p>Login to the studio management system</p>
 
         <form id="loginForm">
           <input type="email" id="email" placeholder="Email" required />
           <input type="password" id="password" placeholder="Пароль" required />
-          <button type="submit">Войти</button>
+          <button type="submit">Login</button>
         </form>
 
         <span id="loginError"></span>
@@ -33,53 +33,53 @@
       <section class="content">
         <header class="topbar">
           <div>
-            <h1>Панель администратора</h1>
-            <p>Контроль смен, чеков, операторов и тоталов</p>
+            <h1>Admin Panel</h1>
+            <p>Control of shifts, receipts, operators and totals</p>
           </div>
-          <button id="logoutBtn">Выйти</button>
+          <button id="logoutBtn">Log out</button>
         </header>
 
         <div id="shiftsPage">
           <section class="stats">
             <div class="stat-card">
-              <span>1 смена</span>
+              <span>1st shift</span>
               <strong id="shiftOneTotal">$0</strong>
             </div>
             <div class="stat-card">
-              <span>2 смена</span>
+              <span>2nd shift</span>
               <strong id="shiftTwoTotal">$0</strong>
             </div>
             <div class="stat-card">
-              <span>Ожидают проверки</span>
+              <span>Awaiting verification</span>
               <strong id="pendingCount">0</strong>
             </div>
             <div class="stat-card">
-              <span>Тотал</span>
+              <span>Total</span>
               <strong id="dayTotal">$0</strong>
             </div>
           </section>
 
           <section class="panel percent-panel">
             <div class="panel-header">
-              <h2>Калькулятор процентов</h2>
-              <p class="muted">30% модель / 20% оператор / 50% студия</p>
+              <h2>Interest calculator</h2>
+              <p class="muted">30% model / 20% cameraman / 50% studio</p>
             </div>
 
             <div class="percent-calculator">
               <input type="number" id="calcTotal" placeholder="Сумма $" min="0" />
 
               <div class="calc-result">
-                <span>Модель получит</span>
+                <span>The model will receive</span>
                 <strong id="modelAmount">$0</strong>
               </div>
 
               <div class="calc-result">
-                <span>Оператор получит</span>
+                <span>The operator will receive</span>
                 <strong id="operatorAmount">$0</strong>
               </div>
 
               <div class="calc-result">
-                <span>Студия получит</span>
+                <span>The studio will receive</span>
                 <strong id="studioAmount">$0</strong>
               </div>
             </div>
@@ -88,28 +88,28 @@
           <section class="panel">
             <div class="panel-header">
               <div>
-                <h2>Чеки по сменам</h2>
-                <p class="muted">Фильтрация по смене, модели и периоду</p>
+                <h2>Checks for shifts</h2>
+                <p class="muted">Filtering by shift, model and period</p>
               </div>
 
               
 
               <div class="filters">
                 <select id="shiftFilter">
-                  <option value="all">Все смены</option>
-                  <option value="1">1 смена</option>
-                  <option value="2">2 смена</option>
+                  <option value="all">All shifts</option>
+                  <option value="1">1st shift</option>
+                  <option value="2">2nd shift</option>
                 </select>
 
                 <select id="modelFilter">
-                  <option value="all">Все модели</option>
+                  <option value="all">All models</option>
                 </select>
 
                 <input type="date" id="dateFrom" />
                 <input type="date" id="dateTo" />
 
                 <button class="export-btn" id="exportCsvBtn" type="button">
-                Скачать отчёт excel
+                Download the report excel
               </button>
               </div>
             </div>
@@ -118,9 +118,9 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Модель</th>
-                    <th>Дата</th>
-                    <th>Смена</th>
+                    <th>Model</th>
+                    <th>Date</th>
+                    <th>Shift</th>
                     <th>Stripchat</th>
                     <th>Chaturbate</th>
                     <th>Cam4</th>
@@ -129,8 +129,8 @@
                     <th>Ton.place</th>
                     <th>LiveJasmin</th>
                     <th>Total</th>
-                    <th>Статус</th>
-                    <th>Действие</th>
+                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody id="checksTable"></tbody>
@@ -141,12 +141,12 @@
           <section class="panel users-panel">
             <div class="panel-header">
               <div>
-                <h2>Операторы</h2>
-                <p class="muted">Создание и удаление операторских аккаунтов</p>
+                <h2>Operators</h2>
+                <p class="muted">Creating and deleting operator accounts</p>
               </div>
 
               <button class="toggle-btn" id="operatorsToggle" type="button">
-                Свернуть
+                Collapse
               </button>
             </div>
 
@@ -155,7 +155,7 @@
                 <input type="email" id="newOperatorEmail" placeholder="Email оператора" required />
                 <input type="text" id="newOperatorUsername" placeholder="Имя оператора" required />
                 <input type="password" id="newOperatorPassword" placeholder="Пароль" required />
-                <button type="submit">Создать оператора</button>
+                <button type="submit">Create an operator</button>
               </form>
 
               <p class="form-message" id="operatorAdminMessage"></p>
@@ -166,10 +166,10 @@
                     <tr>
                       <th>ID</th>
                       <th>Email</th>
-                      <th>Имя</th>
-                      <th>Роль</th>
-                      <th>Создан</th>
-                      <th>Действие</th>
+                      <th>Name</th>
+                      <th>Role</th>
+                      <th>Created</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody id="operatorsTable"></tbody>
@@ -183,8 +183,8 @@
           <section class="panel">
             <div class="panel-header">
               <div>
-                <h2>Диаграммы</h2>
-                <p class="muted">Статистика всех заработков за последние 7 дней</p>
+                <h2>Diagrams</h2>
+                <p class="muted">Statistics of all earnings for the last 7 days</p>
               </div>
             </div>
 
@@ -199,20 +199,20 @@
 
   <div class="modal-overlay hidden" id="deleteCheckModal">
   <div class="drop-modal">
-    <h3>Удалить чек?</h3>
-    <p>Это действие нельзя отменить. Чек исчезнет из базы данных.</p>
+    <h3>Delete a check?</h3>
+    <p>This action cannot be undone. The receipt will disappear from the database.</p>
 
     <div class="modal-actions">
-      <button class="ghost-btn" id="cancelDeleteCheck" type="button">Отмена</button>
-      <button class="danger-btn" id="confirmDeleteCheck" type="button">Удалить</button>
+      <button class="ghost-btn" id="cancelDeleteCheck" type="button">Cancel</button>
+      <button class="danger-btn" id="confirmDeleteCheck" type="button">Delete</button>
     </div>
   </div>
 </div>
 
 <div class="modal-overlay hidden" id="deleteOperatorModal">
   <div class="drop-modal">
-    <h3>Удалить оператора?</h3>
-    <p>Оператор потеряет доступ к системе. Уже отправленные чеки останутся в базе.</p>
+    <h3>Delete operator?</h3>
+    <p>The operator will lose access to the system. Checks already sent will remain in the database.</p>
 
     <div class="modal-actions">
       <button class="ghost-btn" id="cancelDeleteOperator" type="button">Отмена</button>

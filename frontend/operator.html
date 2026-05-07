@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Оператор | CRM</title>
+  <title>Operator | CRM</title>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
@@ -12,12 +12,12 @@
     <section class="login" id="operatorLoginScreen">
       <div class="login-card">
         <h1>Operator CRM</h1>
-        <p>Отправка чеков по сменам</p>
+        <p>Sending checks for shifts</p>
 
         <form id="operatorLoginForm">
           <input type="email" id="operatorEmail" placeholder="Email" required />
           <input type="password" id="operatorPassword" placeholder="Пароль" required />
-          <button type="submit">Войти</button>
+          <button type="submit">Login</button>
         </form>
 
         <span id="operatorLoginError"></span>
@@ -29,49 +29,49 @@
       <div class="operator-shell">
         <header class="operator-topbar">
           <div>
-            <h1>Панель оператора</h1>
-            <p>Заполнение чеков для отправки администратору</p>
+            <h1>Operators panel</h1>
+            <p>Filling out checks to send to the administrator</p>
           </div>
           <button id="operatorLogoutBtn">Выйти</button>
         </header>
 
         <section class="operator-card">
-          <h2>Новый чек</h2>
+          <h2>New check</h2>
 
           <form class="check-form" id="operatorCheckForm">
-            <!-- МОДЕЛЬ -->
+            <!-- MODEL -->
             <div class="field">
-              <label>Фамилия оператора + модели</label>
+              <label>Operator name + models</label>
               <input
                 type="text"
                 id="modelName"
-                placeholder="Например: Jelena"
+                placeholder="operator + model"
                 required
               />
             </div>
 
-            <!-- ДАТА -->
+            <!-- DATE -->
             <div class="field">
-              <label>Дата</label>
+              <label>Date</label>
               <input type="date" id="checkDate" required />
             </div>
 
-            <!-- СМЕНА -->
+            <!-- SHIFT -->
             <div class="field">
-              <label>Смена</label>
+              <label>shift</label>
               <select id="checkShift" required>
-                <option value="">Выберите смену</option>
-                <option value="1">1 смена</option>
-                <option value="2">2 смена</option>
+                <option value="">Select shift</option>
+                <option value="1">1st shift</option>
+                <option value="2">2nd shift</option>
               </select>
             </div>
 
-            <!-- 🔥 ДИНАМИЧЕСКИЕ ПЛАТФОРМЫ -->
+            <!-- 🔥 DYNAMIC PLATFORMS -->
             <div class="platforms-grid full" id="platformFields"></div>
 
-            <!-- КНОПКА -->
+            <!-- BUTTON -->
             <button class="full" type="submit">
-              Отправить чек 
+              Send a check 
             </button>
           </form>
 
