@@ -23,11 +23,12 @@ async function renderPlatformFields() {
         <div class="field">
           <label>${platform.name}</label>
           <input 
-            type="number" 
-            data-platform-key="${platform.key}" 
-            placeholder="0" 
-            min="0" 
-          />
+  type="number" 
+  data-platform-key="${platform.key}" 
+  placeholder="0.00" 
+  min="0"
+  step="0.01"
+/>
         </div>
       `;
     })
@@ -81,7 +82,7 @@ operatorCheckForm.addEventListener("submit", async (event) => {
 
   incomeInputs.forEach((input) => {
     const key = input.dataset.platformKey;
-    incomes[key] = Number(input.value) || 0;
+    incomes[key] = Number(input.value.replace(",", ".")) || 0;
   });
 
   const checkData = {
