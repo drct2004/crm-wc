@@ -1,4 +1,4 @@
-const API_URL = "https://crm-wc.onrender.com";
+const API_URL = window.location.origin;
 
 async function loginRequest(email, password) {
   const response = await fetch(`${API_URL}/auth/login`, {
